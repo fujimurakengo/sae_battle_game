@@ -12,9 +12,13 @@ int *A_player_pos[2] ={0,0};
 int *B_player_pos[2] ={0,0};
 int Player_turn=1;
 
+
 int Countown_Timer=0;
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_Pin_OUT, LED_Pin_IN, NEO_GRB + NEO_KHZ800);
 
+int *A_player_pos[2] ={0,0};
+int *B_player_pos[2] ={0,0};
+int Player_turn=1;
 
 void select_map_possion(int x, int y,int **pos){
   int x_axis_pos = int(analogRead(x) * 4 /1023);
@@ -71,12 +75,13 @@ void setup() {
 }
 
 
+}
 
 void loop() {
   // put your main code here, to run repeatedly:
     Player_turn = (1+Player_turn) % 2;
     Countown_Timer = 10; 
-    
+
     while(Countown_Timer){
 
     }
