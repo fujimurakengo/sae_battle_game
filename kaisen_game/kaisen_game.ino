@@ -3,17 +3,23 @@
 1 means Player B
 
 */
+
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
 #include <Pin_init.h>
-
 
 int *A_player_pos[2] ={0,0};
 int *B_player_pos[2] ={0,0};
 int Player_turn=1;
 
+
 int Countown_Timer=0;
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_Pin_OUT, LED_Pin_IN, NEO_GRB + NEO_KHZ800);
+
+int *A_player_pos[2] ={0,0};
+int *B_player_pos[2] ={0,0};
+int Player_turn=1;
+
 void select_map_possion(int x, int y,int **pos){
   int x_axis_pos = int(analogRead(x) * 4 /1023);
   int y_axis_pos = int(analogRead(y) * 4 /1023);
@@ -34,9 +40,9 @@ int B_plyer_map[4][4]={{0,0,0,0},
                        {0,0,0,0},
                        {0,0,0,0}
                        };
+                       
 Servo water_direction;  // create servo object to control a servo 
 Servo water_swich;  // create servo object to control a servo 
-
 
 void setup() {
   // put your setup code here, to run once:
@@ -66,16 +72,16 @@ void setup() {
     //select_map_possion(A_player_contlor_x, A_player_contlor_y, &A_player_pos);
    // select_map_possion(B_player_contlor_x, B_player_contlor_y, &B_player_pos);
   }
-  
-
 }
 
 
+}
 
 void loop() {
   // put your main code here, to run repeatedly:
     Player_turn = (1+Player_turn) % 2;
     Countown_Timer = 10; 
+
     while(Countown_Timer){
 
     }
