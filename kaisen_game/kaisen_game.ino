@@ -1,33 +1,20 @@
+/*
+0 means Player A
+1 means Player B
 
+*/
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
+#include <Pin_init.h>
 
-
-#define  A_player_contlor_x 0
-#define  A_player_contlor_y 1
-#define  B_player_contlor_x 2
-#define  B_player_contlor_y 3
-#define LED_Pin_IN   6
-#define LED_Pin_OUT  7
 
 int *A_player_pos[2] ={0,0};
 int *B_player_pos[2] ={0,0};
-
-
-
-
-#define  a_led  8
-#define  b_led  9
-#define  c_led 10
-#define  d_led 11
-#define  e_led 12
-#define  f_led 13
-#define  g_led 14
+int Player_turn=1;
 
 int Countown_Timer=0;
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_Pin_OUT, LED_Pin_IN, NEO_GRB + NEO_KHZ800);
 void select_map_possion(int x, int y,int **pos){
- 
   int x_axis_pos = int(analogRead(x) * 4 /1023);
   int y_axis_pos = int(analogRead(y) * 4 /1023);
   //here.you use pointer to detect axises
@@ -86,6 +73,12 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly: 
-  
+  // put your main code here, to run repeatedly:
+    Player_turn = (1+Player_turn) % 2;
+    Countown_Timer = 10; 
+    while(Countown_Timer){
+
+    }
+    
+    
 }
