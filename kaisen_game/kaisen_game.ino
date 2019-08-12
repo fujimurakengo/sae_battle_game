@@ -18,7 +18,7 @@ int A_player_pos[2] ={0,0};
 int B_player_pos[2] ={0,0};
 int Player_turn=1;
 
-void select_map_possion(int x, int y,int *pos){
+void select_map_possion(int *pos){
   
   (pos[0]  ) =  int(analogRead(x) * 4 /1023);
   (pos[1]) =  int(analogRead(y) * 4 /1023);
@@ -67,9 +67,10 @@ void setup() {
  
   Count_down_Timer = 10;
   while(Count_down_Timer){
-    select_map_possion(A_player_contlor_x, A_player_contlor_y, A_player_pos);
-    select_map_possion(B_player_contlor_x, B_player_contlor_y, B_player_pos);
+    select_map_possion( A_player_pos);
+    select_map_possion( B_player_pos);
   }
+  //player initial possion setting
   A_plyer_map[A_player_pos[0]][A_player_pos[1]]=1;
   B_plyer_map[B_player_pos[0]][B_player_pos[1]]=1;
 }
@@ -78,13 +79,24 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-    Player_turn = (1+Player_turn) % 2;
-    Count_down_Timer = 10; 
 
-    while(Count_down_Timer){
+  Player_turn = (1+Player_turn) % 2;//maybe this row's code will not use
 
-    }
+  Count_down_Timer = 10; 
+  while(Count_down_Timer){
+    select_map_possion(A_player_pos);
+  }
+  if(A_plyer_map[B_player_pos[0]][B_player_pos[1]]==1){
+    //Write here win code
+  }
     
+   Count_down_Timer = 10; 
+   while(Count_down_Timer){
+    select_map_possion( B_player_pos);
+  }
+  if(B_plyer_map[A_player_pos[0]][A_player_pos[1]]==1){
+    //Write here win code
+  } 
+ 
     
 }
