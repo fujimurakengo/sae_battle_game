@@ -1,48 +1,16 @@
 /*
 0 means Player A
 1 means Player B
-
 */
-
 #include <Servo.h>
 //#include <Adafruit_NeoPixel.h>
 #include "Pin_init.h"
-
-
-
-
-int Count_down_Timer=0;
 //Adafruit_NeoPixel pixels = Adafruit_NeoPixel(LED_Pin_OUT, LED_Pin_IN, NEO_GRB + NEO_KHZ800);
-
-int A_player_pos[2] ={0,0};
-int B_player_pos[2] ={0,0};
-int Player_turn=1;
-
-void select_map_possion(int *pos){
-  
-  (pos[0]  ) =  int(analogRead(x) * 4 /1023);
-  (pos[1]) =  int(analogRead(y) * 4 /1023);
-
-  //here.you use pointer to detect axises
-}
-  
-
-int A_plyer_map[4][4]={{0,0,0,0},
-                       {0,0,0,0},
-                       {0,0,0,0},
-                       {0,0,0,0}
-                       };
-                       
-int B_plyer_map[4][4]={{0,0,0,0},
-                       {0,0,0,0},
-                       {0,0,0,0},
-                       {0,0,0,0}
-                       };
-                       
 Servo water_direction;  // create servo object to control a servo 
 Servo water_swich;  // create servo object to control a servo 
 
 void setup() {
+   Serial.begin(115200); 
   // put your setup code here, to run once:
   water_direction.attach(4); // This initializes serv motor
   water_direction.attach(5); // This initializes serv motor
@@ -67,8 +35,9 @@ void setup() {
  
   Count_down_Timer = 10;
   while(Count_down_Timer){
-    select_map_possion( A_player_pos);
-    select_map_possion( B_player_pos);
+    select_map_possion(A_player_contlor_x, A_player_contlor_y, A_player_pos,A_pre_player_pos,0);
+    select_map_possion(B_player_contlor_x, B_player_contlor_y, B_player_pos,B_pre_player_pos,1);
+
   }
   //player initial possion setting
   A_plyer_map[A_player_pos[0]][A_player_pos[1]]=1;
@@ -84,7 +53,7 @@ void loop() {
 
   Count_down_Timer = 10; 
   while(Count_down_Timer){
-    select_map_possion(A_player_pos);
+    select_map_possion(A_player_contlor_x, A_player_contlor_y, A_player_pos,A_pre_player_pos,0);
   }
   if(A_plyer_map[B_player_pos[0]][B_player_pos[1]]==1){
     //Write here win code
@@ -92,7 +61,7 @@ void loop() {
     
    Count_down_Timer = 10; 
    while(Count_down_Timer){
-    select_map_possion( B_player_pos);
+    select_map_possion(B_player_contlor_x, B_player_contlor_y, B_player_pos,B_pre_player_pos,1);
   }
   if(B_plyer_map[A_player_pos[0]][A_player_pos[1]]==1){
     //Write here win code
@@ -100,3 +69,26 @@ void loop() {
  
     
 }
+
+void select_map_possion(int x, int y,int *pos,int *pre_pos,int player_num){
+  
+  (pos[0]  ) =  int(analogRead(x) * 4 /1023);
+  (pos[1]) =  int(analogRead(y) * 4 /1023);
+  pre_pos[0] =  pos[0];
+  pre_pos[1] =  pos[1];
+  Serial.write("led;");
+  Serial.println(300+player_num);
+  Serial.println(pre_pos[0]+pre_pos[1]*4);
+  Serial.println(300);//red
+  Serial.println(300);//blue
+  Serial.println(300);//green
+    
+  Serial.write("led;");
+  Serial.println(300+player_num);
+  Serial.println(pos[0]+pos[1]*4);
+  Serial.println(425);//red
+  Serial.println(300);
+  Serial.println(300);    
+  //here.you use pointer to detect axises
+}
+  
