@@ -49,11 +49,7 @@ void setup() {
   B_plyer_map[B_player_pos[0]][B_player_pos[1]]=1;
 }
 
-
-
-
 void loop() {
-
   Player_turn = (1+Player_turn) % 2;//maybe this row's code will not use
 
   Count_down_Timer = 10; 
@@ -71,8 +67,7 @@ void loop() {
   }
   int kinbou=0;
   for(int x_kinbou=-1;x_kinbou<2;x_kinbou+=2){
-    for(int y_kinbou=-1;y_kinbou<2;y_kinbou+=2){
-    
+    for(int y_kinbou=-1;y_kinbou<2;y_kinbou+=2){    
        kinbou=B_plyer_map[x_kinbou+A_player_pos[0]][y_kinbou+A_player_pos[1]]+kinbou;
     }   
   }
@@ -115,7 +110,27 @@ void loop() {
    water_swich.write(0); 
 }
 
-
+int conversion_position(int player_turn)
+{
+  //A:0
+  if(player_turn==0){
+    for(int i=0;i<4;i++){
+      for(int j=0;j<4;j++){
+        if(A_plyer_map[i][j]==1){
+          return(A_player_transmap[i][j]);
+        }
+      }
+    }
+  }else{
+    for(int i=0;i<4;i++){
+      for(int j=0;j<4;j++){
+        if(B_plyer_map[i][j]==1){
+          return(B_player_transmap[i][j]);
+        }
+      }
+    }
+  }
+}
 
 
 
