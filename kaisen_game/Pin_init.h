@@ -11,7 +11,7 @@
 #define  e_led 12
 #define  f_led 13
 #define  g_led 14
-
+int Led_number_list[]={a_led,b_led,c_led ,d_led ,e_led ,f_led ,g_led };
 void select_map_possion(int x, int y,int *pos,int *pre_pos,int player_num);
 void off7SegLED();
 void flash() ;
