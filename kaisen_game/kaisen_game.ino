@@ -35,7 +35,7 @@ void setup() {
   
  //setup sequence
  
-  Count_down_Timer = 10;
+  Count_down_Timer = 9;
   MsTimer2::set(1000, flash);
   MsTimer2::start();
   while(Count_down_Timer){
