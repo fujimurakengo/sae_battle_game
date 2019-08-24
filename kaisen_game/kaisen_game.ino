@@ -1,4 +1,3 @@
-
 /*
 0 means Player A
 1 means Player B
