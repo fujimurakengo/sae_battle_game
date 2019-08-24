@@ -1,9 +1,3 @@
-#define  A_player_contlor_x 0
-#define  A_player_contlor_y 1
-#define  B_player_contlor_x 2
-#define  B_player_contlor_y 3
-
-
 #define  a_led 13
 #define  b_led 14
 #define  c_led 15

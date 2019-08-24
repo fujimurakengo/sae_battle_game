@@ -1,4 +1,3 @@
-
 /*
 0 means Player A
 1 means Player B
@@ -14,8 +13,8 @@ int k=9;
 void setup() {
    Serial.begin(115200); 
   // put your setup code here, to run once:
-  water_direction.attach(4); // This initializes serv motor
-  water_direction.attach(5); // This initializes serv motor
+  water_direction.attach(water_direction_pin); // This initializes serv motor
+  water_swich.attach(water_swich_pin); // This initializes serv motor
   //pixels.begin(); // This initializes the NeoPixel library.
 
 //player contlloer GPIO setting
@@ -35,7 +34,7 @@ void setup() {
   
  //setup sequence
  
-  Count_down_Timer = 9;
+  Count_down_Timer = 10;
   MsTimer2::set(1000, flash);
   MsTimer2::start();
   while(Count_down_Timer){
@@ -49,7 +48,11 @@ void setup() {
   B_plyer_map[B_player_pos[0]][B_player_pos[1]]=1;
 }
 
+
+
+
 void loop() {
+
   Player_turn = (1+Player_turn) % 2;//maybe this row's code will not use
 
   Count_down_Timer = 10; 
@@ -67,7 +70,8 @@ void loop() {
   }
   int kinbou=0;
   for(int x_kinbou=-1;x_kinbou<2;x_kinbou+=2){
-    for(int y_kinbou=-1;y_kinbou<2;y_kinbou+=2){    
+    for(int y_kinbou=-1;y_kinbou<2;y_kinbou+=2){
+    
        kinbou=B_plyer_map[x_kinbou+A_player_pos[0]][y_kinbou+A_player_pos[1]]+kinbou;
     }   
   }
@@ -110,27 +114,7 @@ void loop() {
    water_swich.write(0); 
 }
 
-int conversion_position(int player_turn)
-{
-  //A:0
-  if(player_turn==0){
-    for(int i=0;i<4;i++){
-      for(int j=0;j<4;j++){
-        if(A_plyer_map[i][j]==1){
-          return(A_player_transmap[i][j]);
-        }
-      }
-    }
-  }else{
-    for(int i=0;i<4;i++){
-      for(int j=0;j<4;j++){
-        if(B_plyer_map[i][j]==1){
-          return(B_player_transmap[i][j]);
-        }
-      }
-    }
-  }
-}
+
 
 
 
@@ -159,8 +143,8 @@ void select_map_possion(int x, int y,int *pos,int *pre_pos,int player_num){
   
 //全てのLEDを非表示にする
 void off7SegLED(){
-//for文で8番ピンから14番ピンまでをLOWにする
- for(int j=13;j<20;j++){
+//for文で2番ピンから8番ピンまでをLOWにする
+ for(int j=2;j<9;j++){
   digitalWrite(j,HIGH);
  }
 }
