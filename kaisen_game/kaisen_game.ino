@@ -159,8 +159,8 @@ void select_map_possion(int x, int y,int *pos,int *pre_pos,int player_num){
   
 //全てのLEDを非表示にする
 void off7SegLED(){
-//for文で2番ピンから8番ピンまでをLOWにする
- for(int j=2;j<9;j++){
+//for文で8番ピンから14番ピンまでをLOWにする
+ for(int j=13;j<20;j++){
   digitalWrite(j,HIGH);
  }
 }
