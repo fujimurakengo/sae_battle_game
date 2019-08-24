@@ -14,8 +14,8 @@ int k=9;
 void setup() {
    Serial.begin(115200); 
   // put your setup code here, to run once:
-  water_direction.attach(4); // This initializes serv motor
-  water_direction.attach(5); // This initializes serv motor
+  water_direction.attach(water_direction_pin); // This initializes serv motor
+  water_swich.attach(water_swich_pin); // This initializes serv motor
   //pixels.begin(); // This initializes the NeoPixel library.
 
 //player contlloer GPIO setting

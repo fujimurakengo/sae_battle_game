@@ -6,14 +6,14 @@ SoftwareSerial mySerial(3,2);
 #define DELAY_TIME 50 
 #define DELAY_TIME2 20
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(16+16, 0, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(16+16, 3, NEO_GRB + NEO_KHZ800);
 
 void setup(){
-  mySerial.begin(115200);
+  
   Serial.begin(115200);
 
   mySerial.listen();
-  pinMode(13,OUTPUT);
+
 
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
